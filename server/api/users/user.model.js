@@ -31,6 +31,9 @@ var User = db.define('user', {
       var hash = buffer.toString('base64');
       this.setDataValue('password', hash);
       this.setDataValue('salt', salt);
+    },
+    get: function(){
+      return this.getDataValue('password');
     }
   },
   salt: {
