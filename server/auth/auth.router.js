@@ -4,9 +4,9 @@ var router = require('express').Router();
 
 var HttpError = require('../utils/HttpError');
 var User = require('../api/users/user.model');
-var crypto = require('crypto');
-var iterations = 1;
-var bytes = 64;
+// var crypto = require('crypto');
+// var iterations = 1;
+// var bytes = 64;
 
 router.post('/login', function (req, res, next) {
   User.findOne({
@@ -23,12 +23,12 @@ router.post('/login', function (req, res, next) {
 });
 
 router.post('/signup', function (req, res, next) {
-  var salt = crypto.randomBytes(16).toString('base64');
-  var buffer = crypto.pbkdf2Sync(req.body.password, salt, iterations, bytes);
-  var hash = buffer.toString('base64');
-  console.log("HASH",hash);
-  console.log("REQBODY", req.body);
-  req.body.password = hash;
+  // var salt = crypto.randomBytes(16).toString('base64');
+  // var buffer = crypto.pbkdf2Sync(req.body.password, salt, iterations, bytes);
+  // var hash = buffer.toString('base64');
+  // console.log("HASH",hash);
+  // console.log("REQBODY", req.body);
+  // req.body.password = hash;
   User.create(req.body)
   .then(function (user) {
     req.login(user, function (err) {
